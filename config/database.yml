@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV["POSTGRESQL_USER"] || ENV["USER"] || 'postgres' %>
+  database: <%= ENV["POSTGRESQL_DATABASE"] || 'skoob_crawler_development' %>
+  password: <%= ENV["POSTGRESQL_PASSWORD"] %>
+  host: <%= ENV["POSTGRESQL_HOST"] || 'localhost' %>
+  pool: <%= ENV["POSTGRESQL_POOL"] || 5 %>
+  port: <%= ENV["POSTGRESQL_PORT"] || 5432 %>
+
+development:
+  <<: *default
+  database: skoob_crawler_development
+
+test:
+  <<: *default
+  database: skoob_crawler_test
+
+production:
+  <<: *default

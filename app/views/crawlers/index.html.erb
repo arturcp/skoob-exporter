@@ -1,0 +1,15 @@
+<%= form_tag crawlers_path do %>
+  <fieldset>
+    Email:
+    <%= text_field_tag 'email', ENV['USER_EMAIL'] %>
+  </fieldset>
+
+  <fieldset>
+    Password:
+    <%= password_field_tag 'password', ENV['USER_PASSWORD'] %>
+  </fieldset>
+
+  <fieldset>
+    <%= submit_tag 'Entrar' %>
+  </fieldset>
+<% end %>
