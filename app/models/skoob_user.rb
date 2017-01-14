@@ -1,28 +1,28 @@
 require 'mechanize'
 
-class SkoobUser
-  attr_reader :id
+class SkoobUser < ActiveRecord::Base
+  has_many :books, primary_key: 'skoob_user_id'
 
-  def initialize(email, password)
-    @email = email
-    @password = password
-    @id = 0
-  end
+  def self.login(email, password)
+    user = find_or_create_by(email: email)
+    mechanize = user.mechanize
 
-  def login
     mechanize.get('https://www.skoob.com.br/login/') do |page|
       form = page.forms[2]
       button = form.button_with(value: 'Entrar')
-      form.fields[0].value = @email
-      form.fields[1].value = @password
+      form.fields[0].value = email
+      form.fields[1].value = password
       next_page = mechanize.submit(form, button)
-      url = next_page.uri.to_s
 
-      slug = url.split('/').last
-      @id = slug.split('-').first
+      unless user.skoob_user_id.present?
+        url = next_page.uri.to_s
+        slug = url.split('/').last
+        user.skoob_user_id = slug.split('-').first
+        user.save
+      end
     end
 
-    self
+    user
   end
 
   def mechanize

@@ -1,14 +1,11 @@
 require 'open-uri'
 
 class Bookshelf
-  PAGE_LIMIT = 2
-
   attr_reader :user, :books
 
   def initialize(user)
     @mechanize = user.mechanize
     @user = user
-    @books = []
   end
 
   def read
@@ -18,35 +15,51 @@ class Bookshelf
   private
 
   def fetch_books!
-    page = 1
+    return [] unless user.skoob_user_id.present?
 
-    while true && page < PAGE_LIMIT do
+    page = user.last_imported_page
+    books = []
+
+    while true do
       puts "********** page #{page} ***********"
 
-      url = SkoobUrls.bookshelf_read(user.id, page)
+      url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
       data = JSON.load(open(url)).deep_symbolize_keys
 
-      @books += data[:response].map do |book|
-        Book.new(book[:edicao])
-      end
+      books += data[:response].map do |book|
+        edition = book[:edicao]
+
+        unless Book.exists?(skoob_user_id: @user.skoob_user_id, skoob_book_id: edition[:id])
+          Book.create!(
+            skoob_user_id: @user.skoob_user_id,
+            title: edition[:titulo],
+            author: edition[:autor],
+            publisher: edition[:editora],
+            year: edition[:ano].to_i,
+            skoob_book_id: edition[:id],
+            isbn: fetch_isbn(edition[:titulo], edition[:url])
+          )
+        end
+      end.compact
 
       page += 1
 
       break if data[:response].empty?
     end
 
-    books_with_isbn
+    books
   end
 
-  def books_with_isbn
-    @books.map do |book|
-      url = "#{SkoobUrls::SKOOB_URL}/#{book.url}"
+  def fetch_isbn(book_title, book_url)
+    url = SkoobUrls.book_page_url(book_url)
+    isbn = 0
 
-      @mechanize.get(url) do |page|
-        puts "Reading isbn from #{url}"
-        book.isbn = page.at('meta[property="books:isbn"]')[:content]
-        puts "#{book.title}: #{book.isbn}"
-      end
+    @mechanize.get(url) do |page|
+      puts "Reading isbn from #{url}"
+      isbn = page.at('meta[property="books:isbn"]')[:content]
+      puts "#{book_title}: #{isbn}"
     end
+
+    isbn
   end
 end
