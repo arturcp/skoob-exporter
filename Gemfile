@@ -32,6 +32,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'pg'
 gem 'mechanize'
 gem 'colorize'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

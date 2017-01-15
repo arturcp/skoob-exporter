@@ -25,3 +25,12 @@ fieldset {
   margin-top: 45px;
   background-color: rgba(108, 143, 179, 0.04);
 }
+
+.import-status {
+  margin: 50px;
+}
+
+.working {
+  color: #ffa500;
+  font-weight: bold;
+}

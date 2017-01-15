@@ -1,1 +1,41 @@
-<h1>Livros salvos com sucesso!</h1>
+<div class="row import-status">
+  <div class="col-sm-2 text-center">
+     <%= render 'loading' %>
+     <p>
+       <%=
+         submit_tag 'Voltar', class: 'btn btn-lg btn-primary btn-block',
+           :onclick => "window.location = '#{root_path}'"
+       %>
+     </p>
+  </div>
+  <div class="col-sm-10">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Importação</h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt>Status</dt>
+          <dd>
+            <span class="working">Em andamento</span>
+          </dd>
+
+          <dt><br />Email</dt>
+          <dd>
+            <%= @user.email %>
+          </dd>
+
+          <dt><br />Skoob ID</dt>
+          <dd>
+            <%= @user.skoob_user_id %>
+          </dd>
+
+          <dt><br />Livros importados</dt>
+          <dd>
+            42
+          </dd>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

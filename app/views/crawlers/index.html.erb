@@ -32,33 +32,13 @@
         <%= submit_tag 'Gerar', class: 'btn btn-lg btn-primary btn-block' %>
       </div>
     <% end %>
+
+    <% if flash[:error] %>
+      <div class="alert alert-danger" role="alert">
+        Hum... não conseguimos gerar o arquivo. Verifique seu email e senha e
+        tente novamente.
+      </div>
+      <% flash[:error] = nil %>
+    <% end %>
   </div>
 </div>
-
-
-<!-- <h2 class="form-signin-heading">Credenciais do Skoob</h2>
-<h4>
-  Não se preocupe, não armazenamos sua senha. Você pode conferir isso no
-  <a href="https://github.com/arturcp/skoob-exporter">código fonte</a> deste projeto.
-</h4> -->
-
-
-<!--
-
-<div class="container">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-
-    </div> -->
