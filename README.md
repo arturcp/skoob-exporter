@@ -12,8 +12,8 @@ a csv file in the format Good Reads expect, so you can easily import it there.
 * Rails `5.0.0.1`
 * Postgress `9.6.1`
 
-To prepare your project, adjust your database configurations on db/database.yml
-and run on the therminal:
+To prepare your project, adjust your database configurations on `db/database.yml`
+and run on the terminal:
 
 ```
   bundle install
@@ -22,20 +22,23 @@ and run on the therminal:
 
 # How to run in the console
 
-Adjust your email and password in the env variables, go to the terminal and
-run:
+Go to the terminal and run:
 
 ```
   bin/rake skoob:import
 ```
+Provide your Skoob credentials and wait.
+
 At the end of the script, it will provide your skoob id. It is a number like
 `999999`. To generate your csv file, execute:
 
 ```
   bin/rake skoob:csv::generate 999999
 ```
-Remember to replace `999999` with your skoob id. The task `skoob:import` must
-be executed before the `skoob:csv:generate`.
+
+Remember to replace `999999` with your skoob id. The instructions to generate the
+csv will also be provided by the skoob:import task, so you don't need to remember
+the command to generate the csv.
 
 # How to run in the web
 

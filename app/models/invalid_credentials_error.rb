@@ -1,0 +1,2 @@
+class InvalidCredentialsError < StandardError
+end

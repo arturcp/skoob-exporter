@@ -4,7 +4,7 @@ class SkoobUser < ActiveRecord::Base
   has_many :books, primary_key: 'skoob_user_id'
 
   def self.login(email, password)
-    user = find_or_create_by(email: email)
+    user = find_or_initialize_by(email: email)
     mechanize = user.mechanize
 
     mechanize.get('https://www.skoob.com.br/login/') do |page|
@@ -18,7 +18,7 @@ class SkoobUser < ActiveRecord::Base
         url = next_page.uri.to_s
         slug = url.split('/').last
         user.skoob_user_id = slug.split('-').first
-        user.save
+        user.save if user.skoob_user_id > 0
       end
     end
 
