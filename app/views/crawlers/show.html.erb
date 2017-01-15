@@ -1,10 +1,15 @@
-<div class="row import-status">
+<div class="row import-status" data-loading="true">
   <div class="col-sm-2 text-center">
      <%= render 'loading' %>
      <p>
        <%=
          submit_tag 'Voltar', class: 'btn btn-lg btn-primary btn-block',
            :onclick => "window.location = '#{root_path}'"
+       %>
+     </p>
+     <p class="hidden" id="download">
+       <%=
+         submit_tag 'Baixar', class: 'btn btn-lg btn-success btn-block'
        %>
      </p>
   </div>

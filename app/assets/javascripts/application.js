@@ -14,3 +14,19 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  var loading = $('[data-loading]');
+
+  if (loading.length > 0) {
+    // checkImportStatus();
+  }
+});
+
+
+function checkImportStatus() {
+  setTimeout(function() {
+
+      checkImportStatus();
+  }, 5000);
+}
