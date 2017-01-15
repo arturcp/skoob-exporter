@@ -1,24 +1,30 @@
-# README
+# Skoob Exporter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Skoob has no public API and does not provide an easy way to export your books to
+other social networks like Good Reads.
 
-Things you may want to cover:
+To fix that, this project gets information about all your books and generates
+a csv file in the format Good Reads expect, so you can easily import it there.
 
-* Ruby version
+# Dependencies
 
-* System dependencies
+* Ruby `2.3.2`
+* Rails `5.0.0.1`
+* Postgress `9.6.1`
 
-* Configuration
+To prepare your project, adjust your database configurations on db/database.yml
+and run on the therminal:
 
-* Database creation
+```
+  bundle install
+  bin/rake db:create db:migrate
+```
 
-* Database initialization
+# How to run
 
-* How to run the test suite
+Adjust your email and password in the env variables, go to the terminal and
+run:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+  bin/rake skoob:import
+```
