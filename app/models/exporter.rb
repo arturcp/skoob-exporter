@@ -16,8 +16,9 @@ class Exporter
       csv << header
 
       books.each do |book|
-        csv << [book.title, book.author, nil, nil,book.isbn, book.publisher, nil,
-           book.year, book.year, nil, nil, nil, nil]
+        csv << [book.title, book.author, book.isbn, nil, nil,
+          book.publisher, nil, book.year, book.year,
+          nil, nil, nil, nil]
       end
     end
   end
