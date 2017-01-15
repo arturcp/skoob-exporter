@@ -7,7 +7,7 @@ namespace :skoob do
     puts '==================='
     print 'email: '
     email = STDIN.gets.chomp
-    print 'password: '
+    print 'password (typing will be hidden): '
     password = STDIN.noecho(&:gets)
     puts
 
