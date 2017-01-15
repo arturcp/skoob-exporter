@@ -12,8 +12,8 @@ namespace :skoob do
     puts
 
     begin
-      skoob = Skoob.new(email, password)
-      skoob.fetch_books!
+      user = SkoobUser.login(email, password)
+      Skoob.fetch_books!(user)
 
       puts
       puts "Done! Your Skoob ID is #{skoob.user.skoob_user_id.to_s.green}"

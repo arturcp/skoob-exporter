@@ -3,10 +3,13 @@ class CrawlersController < ApplicationController
   end
 
   def create
-    skoob = Skoob.new(params[:email], params[:password])
-    if skoob.user.skoob_user_id > 0
-      # SkoobImporterWorker.perform_async(skoob)
-      redirect_to crawler_path(skoob.user.skoob_user_id)
+    user = SkoobUser.login(params[:email], params[:password])
+
+    if user.skoob_user_id > 0
+      user.update(import_status: 1)
+      SkoobImporterWorker.perform_async(user.skoob_user_id)
+
+      redirect_to crawler_path(user.skoob_user_id)
     else
       flash[:error] = 'Invalid Credentials'
       redirect_to root_path

@@ -41,7 +41,7 @@ function checkImportStatus(url) {
 
       if (data.status === 0) {
         $('[data-status]').toggleClass('finished').text('Concluído');
-        $('#download').show();
+        $('#download').removeClass('hidden');
       } else {
         $('[data-status]').text('Em andamento');
         checkImportStatus(url);

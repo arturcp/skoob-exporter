@@ -21,7 +21,7 @@ class Bookshelf
     books = []
     duplicated_books = []
 
-    while true && page <= 1 do
+    while true do
       puts "********** page #{page} ***********"
 
       url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
