@@ -1,15 +1,64 @@
-<%= form_tag crawlers_path do %>
-  <fieldset>
-    Email:
-    <%= text_field_tag 'email', ENV['USER_EMAIL'] %>
-  </fieldset>
+<div class="row">
+  <div class="col-sm-8">
+    <h2 class="page-header">Exporte seus livros do Skoob</h2>
+    <p class="lead">
+      Você quer migrar para o <a href="https://www.goodreads.com/">Good Reads</a>
+      mas não quer recadastrar todos os seus livros, um por um, novamente?
+    </p>
+    <p class="lead">
+      O Good Reads possui uma <a href="https://www.goodreads.com/review/import" />ferramenta de importação</a>,
+      e tudo o que você precisa é exportar seus livros do skoob no formato correto.
+      Nós fazemos isso para você!
+    </p>
+    <p class="lead">
+      Basta entrar com a sua conta do Skoob e esperar o download do arquivo começar.
+      E Não se preocupe, não armazenamos sua senha. Você pode conferir isso no
+      <a href="https://github.com/arturcp/skoob-exporter">código fonte</a> deste projeto.
+    </p>
+  </div>
+  <div class="col-md-4 login-box">
+    <%= form_tag crawlers_path, class: 'form-signin' do %>
+      <div class="form-group">
+        <label>Email</label>
+        <%= text_field_tag 'email', nil, class: 'form-control' %>
+      </div>
 
-  <fieldset>
-    Password:
-    <%= password_field_tag 'password', ENV['USER_PASSWORD'] %>
-  </fieldset>
+      <div class="form-group">
+        <label>Senha</label>
+        <%= password_field_tag 'password', nil, class: 'form-control' %>
+      </div>
 
-  <fieldset>
-    <%= submit_tag 'Entrar' %>
-  </fieldset>
-<% end %>
+      <div class="form-group">
+        <%= submit_tag 'Gerar', class: 'btn btn-lg btn-primary btn-block' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- <h2 class="form-signin-heading">Credenciais do Skoob</h2>
+<h4>
+  Não se preocupe, não armazenamos sua senha. Você pode conferir isso no
+  <a href="https://github.com/arturcp/skoob-exporter">código fonte</a> deste projeto.
+</h4> -->
+
+
+<!--
+
+<div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> -->
