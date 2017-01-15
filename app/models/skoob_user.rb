@@ -25,6 +25,14 @@ class SkoobUser < ActiveRecord::Base
     user
   end
 
+  def import_library
+    update(import_status: 1, not_imported: {})
+
+    books = yield(self)
+
+    update(import_status: 0, not_imported: books[:duplicated])
+  end
+
   def mechanize
     @mechanize ||= begin
       mechanize = Mechanize.new { |agent|

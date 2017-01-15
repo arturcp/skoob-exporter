@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(version: 20170114205031) do
   create_table "skoob_users", force: :cascade do |t|
     t.string  "email"
     t.integer "skoob_user_id"
-    t.integer "last_imported_page", default: 1
+    t.integer "import_status", default: 0
+    t.jsonb   "not_imported",  default: {}, null: false
   end
 
 end

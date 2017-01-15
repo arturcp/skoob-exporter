@@ -16,17 +16,36 @@
 //= require_tree .
 
 $(document).ready(function() {
-  var loading = $('[data-loading]');
+  var loading = $('[data-loading-url]');
 
   if (loading.length > 0) {
-    // checkImportStatus();
+    checkImportStatus(loading.data('loading-url'));
   }
 });
 
-
-function checkImportStatus() {
+function checkImportStatus(url) {
   setTimeout(function() {
+    $.get(url, function(data) {
+      $('[data-count]').text(data.count);
+      if (data.duplicated.length > 0) {
+        $('[data-duplicated]').removeClass('hidden');
+        var ul = $('<ul>');
 
-      checkImportStatus();
-  }, 5000);
+        $.each(data.duplicated, function(_, item) {
+          var li = $('<li>').html('<span>[ISBN: ' + item.isbn + '] </span>' + item.title + ' - de ' + item.author);
+          ul.append(li);
+        });
+
+        $('[data-duplicated] dd').html('').append(ul);
+      }
+
+      if (data.status === 0) {
+        $('[data-status]').toggleClass('finished').text('Concluído');
+        $('#download').show();
+      } else {
+        $('[data-status]').text('Em andamento');
+        checkImportStatus(url);
+      }
+    })
+  }, 3000);
 }

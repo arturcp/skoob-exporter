@@ -11,6 +11,8 @@ class Skoob
   def fetch_books!
     raise InvalidCredentialsError.new('Invalid credentials') unless @user.skoob_user_id > 0
 
-    Bookshelf.new(@user).read
+    @user.import_library do |user|
+      Bookshelf.new(user).read
+    end
   end
 end

@@ -30,7 +30,16 @@ fieldset {
   margin: 50px;
 }
 
-.working {
+.running {
   color: #ffa500;
   font-weight: bold;
+}
+
+.finished {
+  color: #0fc330;
+  font-weight: bold;
+}
+
+[data-duplicated] span {
+  color: #c72b2b;
 }
