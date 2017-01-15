@@ -3,9 +3,14 @@ class StatusController < ApplicationController
     user = SkoobUser.find_by(skoob_user_id: params[:id])
 
     if user
-      render json: { status: user.import_status, duplicated: user.not_imported, count: user.books.count }
+      render json: {
+        status: user.import_status,
+        duplicated: user.not_imported,
+        count: user.books.count,
+        total: user.books_count
+      }
     else
-      render json: { status: 0, duplicated: [], count: 0 }
+      render json: { status: 0, duplicated: [], count: 0, total: 0 }
     end
   end
 end

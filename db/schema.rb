@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114205031) do
+ActiveRecord::Schema.define(version: 20170115182558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170114205031) do
     t.integer "skoob_user_id"
     t.integer "import_status", default: 0
     t.jsonb   "not_imported",  default: {}, null: false
+    t.integer "books_count",   default: 0
   end
 
 end

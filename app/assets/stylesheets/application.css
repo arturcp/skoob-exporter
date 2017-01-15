@@ -43,3 +43,8 @@ fieldset {
 [data-duplicated] span {
   color: #c72b2b;
 }
+
+[data-count] {
+  width: 100%;
+  text-align: right;
+}

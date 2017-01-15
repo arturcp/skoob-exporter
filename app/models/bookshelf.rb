@@ -21,11 +21,13 @@ class Bookshelf
     books = []
     duplicated_books = []
 
+    url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
+    data = JSON.load(open(url)).deep_symbolize_keys
+
+    user.update(books_count: data[:paging][:total].to_i)
+
     while true do
       puts "********** page #{page} ***********"
-
-      url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
-      data = JSON.load(open(url)).deep_symbolize_keys
 
       books += data[:response].map do |item|
         edition = item[:edicao]
@@ -50,6 +52,9 @@ class Bookshelf
       end.compact
 
       page += 1
+
+      url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
+      data = JSON.load(open(url)).deep_symbolize_keys
 
       break if data[:response].empty?
     end

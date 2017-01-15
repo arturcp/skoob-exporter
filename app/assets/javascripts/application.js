@@ -26,7 +26,14 @@ $(document).ready(function() {
 function checkImportStatus(url) {
   setTimeout(function() {
     $.get(url, function(data) {
-      $('[data-count]').text(data.count);
+      $('[data-count]').text(data.count + ' / ' + data.total);
+
+      var progressBar = $('.progress-bar'),
+          percentage = Math.ceil(data.count * 100 / data.total);
+
+      progressBar.css('width', + percentage + '%');
+      progressBar.find('.sr-only').text(percentage + '% completed');
+
       if (data.duplicated.length > 0) {
         $('[data-duplicated]').removeClass('hidden');
         var ul = $('<ul>');
