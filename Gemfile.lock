@@ -48,6 +48,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    colorize (0.8.1)
     concurrent-ruby (1.0.4)
     debug_inspector (0.0.2)
     domain_name (0.5.20161129)
@@ -181,6 +182,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  colorize
   dotenv-rails
   jbuilder (~> 2.5)
   jquery-rails

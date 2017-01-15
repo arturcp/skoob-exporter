@@ -29,7 +29,9 @@ class Bookshelf
       books += data[:response].map do |book|
         edition = book[:edicao]
 
-        unless Book.exists?(skoob_user_id: @user.skoob_user_id, skoob_book_id: edition[:id])
+        if Book.exists?(skoob_user_id: @user.skoob_user_id, skoob_book_id: edition[:id])
+          puts "Book #{edition[:titulo]} already exists...".red
+        else
           Book.create!(
             skoob_user_id: @user.skoob_user_id,
             title: edition[:titulo],
@@ -55,11 +57,10 @@ class Bookshelf
     isbn = 0
 
     @mechanize.get(url) do |page|
-      puts "Reading isbn from #{url}"
       isbn = page.at('meta[property="books:isbn"]')[:content]
-      puts "#{book_title}: #{isbn}"
+      puts "#{book_title.yellow}: #{isbn}"
     end
 
-    isbn
+    isbn.delete('-._')
   end
 end
