@@ -1,10 +1,11 @@
 # Skoob Exporter
 
 Skoob has no public API and does not provide an easy way to export your books to
-other social networks like Good Reads.
+other social networks like Goodreads.
 
 To fix that, this project gets information about all your books and generates
-a csv file in the format Good Reads expect, so you can easily import it there.
+a csv file in the format Goodreads expect, so you can easily
+[import it here](https://www.goodreads.com/review/import).
 
 # Dependencies
 

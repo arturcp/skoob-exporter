@@ -27,7 +27,7 @@ namespace :skoob do
   end
 
   namespace :csv do
-    desc 'Generate csv with skoob data to be imported on Good Reads'
+    desc 'Generate csv with skoob data to be imported on Goodreads'
     task generate: :environment do
       ARGV.each { |a| task a.to_sym do ; end }
 
