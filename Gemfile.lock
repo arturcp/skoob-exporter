@@ -56,7 +56,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
-    ffi (1.9.17)
+    ffi (1.12.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     http-cookie (1.0.3)
