@@ -99,7 +99,7 @@ GEM
       mini_portile2 (~> 2.1.0)
     ntlm-http (0.1.1)
     pg (0.19.0)
-    puma (3.6.2)
+    puma (3.12.2)
     rack (2.0.1)
     rack-protection (1.5.3)
       rack
@@ -198,7 +198,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mechanize
   pg
-  puma (~> 3.0)
+  puma (~> 3.8)
   rails (~> 5.0.0, >= 5.0.0.1)
   sass-rails (~> 5.0)
   sidekiq
