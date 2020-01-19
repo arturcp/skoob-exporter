@@ -40,11 +40,11 @@ gem 'colorize'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'dotenv-rails'
 end
 
 group :development do
