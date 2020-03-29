@@ -3,4 +3,4 @@
   - skoob_importer
 
 production:
-  :concurrency: 25
+  :concurrency: 1
