@@ -1,0 +1,4 @@
+#!/bin/bash
+
+RAILS_ENV=production bin/rake assets:precompile
+git push production master
