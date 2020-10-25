@@ -42,6 +42,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'dotenv-rails'
 gem 'rack', '2.0.8'
+gem 'slack-notifier'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
