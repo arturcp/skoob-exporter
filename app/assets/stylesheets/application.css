@@ -48,3 +48,9 @@ fieldset {
   width: 100%;
   text-align: right;
 }
+
+.important-warning {
+  border: 1px solid #ccc;
+  padding: 9px;
+  background-color: #f5ebeb;
+}
