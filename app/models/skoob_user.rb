@@ -6,8 +6,9 @@ class SkoobUser < ActiveRecord::Base
   def self.login(email, password)
     user = find_or_initialize_by(email: email)
     mechanize = user.mechanize
+    referer = 'https://www.google.com.br'
 
-    mechanize.get('https://www.skoob.com.br/login/') do |page|
+    mechanize.get('https://www.skoob.com.br/login/', [], referer) do |page|
       form = page.forms[2]
       button = form.button_with(value: 'Entrar')
       form.fields[0].value = email
