@@ -36,7 +36,7 @@ class SkoobUser < ActiveRecord::Base
   def mechanize
     @mechanize ||= begin
       mechanize = Mechanize.new { |agent|
-        agent.user_agent_alias = 'Mac Safari'
+        agent.user_agent_alias = Mechanize::AGENT_ALIASES.keys.sample
       }
 
       mechanize.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
