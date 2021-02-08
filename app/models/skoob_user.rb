@@ -25,6 +25,9 @@ class SkoobUser < ActiveRecord::Base
     end
 
     user
+  rescue => error
+    Slack::Message.send("Erro ao importar: #{error}", notify_channel: true)
+    raise error
   end
 
   def import_library
