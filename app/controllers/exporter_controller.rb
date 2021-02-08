@@ -3,6 +3,8 @@ class ExporterController < ApplicationController
     csv = Exporter.new(skoob_user_id).generate_csv
     send_slack_notification(csv)
 
+    Book.where(skoob_user_id: skoob_user_id).destroy_all
+
     send_data csv,
       type: 'text/csv; charset=utf-8; header=present',
       disposition: "attachment; filename=skoob_books_#{skoob_user_id}.csv"
