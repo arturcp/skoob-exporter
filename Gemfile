@@ -44,6 +44,7 @@ gem 'dotenv-rails'
 gem 'rack', '2.1.4'
 gem 'slack-notifier'
 gem 'redis'
+gem 'rest-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
