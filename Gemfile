@@ -42,7 +42,8 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'dotenv-rails'
 gem 'rack', '2.1.4'
-gem 'slack-notifier'
+# gem 'slack-notifier'
+gem 'slack-notify'
 gem 'redis'
 gem 'rest-client'
 
