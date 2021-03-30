@@ -22,7 +22,8 @@ class Bookshelf
     duplicated_books = []
 
     url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
-    data = JSON.load(open(url)).deep_symbolize_keys
+    response = RestClient.get(url)
+    data = JSON.load(response.body).deep_symbolize_keys
 
     user.update(books_count: data[:paging][:total].to_i)
 
@@ -54,7 +55,8 @@ class Bookshelf
       page += 1
 
       url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
-      data = JSON.load(open(url)).deep_symbolize_keys
+      response = RestClient.get(url)
+      data = JSON.load(response.body).deep_symbolize_keys
 
       break if data[:response].empty?
     end
