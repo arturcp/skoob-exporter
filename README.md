@@ -11,9 +11,9 @@ a csv file in the format Goodreads expect, so you can easily
 
 # Dependencies
 
-* Ruby `2.3.2`
-* Rails `5.0.0.1`
-* Postgress `9.6.1`
+- Ruby `2.3.2`
+- Rails `5.0.0.1`
+- Postgress `9.6.1`
 
 To prepare your project, adjust your database configurations on `db/database.yml`
 and run on the terminal:
@@ -30,6 +30,7 @@ Go to the terminal and run:
 ```
   bin/rake skoob:import
 ```
+
 Provide your Skoob credentials and wait.
 
 At the end of the script, it will provide your skoob id. It is a number like
@@ -49,3 +50,37 @@ Access the root url and provide your skoob credentials. Once you submit, you
 will be redirected to a page that will wait until the process is over. It will
 hold the user there and be pooling from time to time. When all books are imported,
 it will generate the .csv file and the browser will download it.
+
+## Changing server
+
+Skoob-exporter is hosted in two different environments.
+
+To prepare your git configuration to deploy to them, follow these steps:
+
+1. Production
+
+Log into your personal heroku account and run:
+
+```
+git remote add heroku-personal https://git.heroku.com/skoob-export.git
+```
+
+Then:
+
+```
+git push heroku-personal master
+```
+
+2. Stage
+
+Log into the staging heroku account (we are using Mungazi's) and run:
+
+```
+git remote add heroku-mungazi https://git.heroku.com/skoob-export.git
+```
+
+Then:
+
+```
+git push heroku-mungazi master
+```
