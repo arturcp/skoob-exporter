@@ -6,10 +6,10 @@ module Slack
       webhook = ENV['SLACK_WEBHOOK']
       return unless webhook.present?
 
-      notifier = Slack::Notifier.new(webhook)
-      message = "<!channel> #{message}" if notify_channel
+      notifier = SlackNotify::Client.new(webhook_url: webhook)
+      message = "@channel #{message}" if notify_channel
       message = "[#{message}](#{url})" if url
-      notifier.ping(message)
+      notifier.notify(message, '#skoob-exporter')
     end
   end
 end
