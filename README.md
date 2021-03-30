@@ -51,36 +51,6 @@ will be redirected to a page that will wait until the process is over. It will
 hold the user there and be pooling from time to time. When all books are imported,
 it will generate the .csv file and the browser will download it.
 
-## Changing server
+# Environments
 
-Skoob-exporter is hosted in two different environments.
-
-To prepare your git configuration to deploy to them, follow these steps:
-
-1. Production
-
-Log into your personal heroku account and run:
-
-```
-git remote add heroku-personal https://git.heroku.com/skoob-export.git
-```
-
-Then:
-
-```
-git push heroku-personal master
-```
-
-2. Stage
-
-Log into the staging heroku account (we are using Mungazi's) and run:
-
-```
-git remote add heroku-mungazi https://git.heroku.com/skoob-export.git
-```
-
-Then:
-
-```
-git push heroku-mungazi master
-```
+- [Heroku](docs/heroku.md)
