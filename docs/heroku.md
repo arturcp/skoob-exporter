@@ -31,3 +31,17 @@ Then:
 ```
 git push heroku-stage master
 ```
+
+# Heroku commands
+
+Because you will have more than one Heroku remotes in your git configuration, you need to explicitly provide the app during all heroku's commands:
+
+```
+heroku logs --tail --app <name of the app>
+```
+
+or
+
+```
+heroku logs --tail --remote heroku-stage
+```
