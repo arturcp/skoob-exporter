@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pg'
 gem 'mechanize'
 gem 'colorize'
-gem 'sidekiq'
+gem 'sidekiq', '5.2.7'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'dotenv-rails'
