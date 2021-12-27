@@ -11,7 +11,7 @@ a csv file in the format Goodreads expect, so you can easily
 
 # Dependencies
 
-- Ruby `2.3.2`
+- Ruby `3.0.0`
 - Rails `5.0.0.1`
 - Postgress `9.6.1`
 
@@ -54,3 +54,27 @@ it will generate the .csv file and the browser will download it.
 # Environments
 
 - [Heroku](docs/heroku.md)
+
+# How to run it locally
+
+* Start the redis:
+
+```
+redis
+```
+
+* start sidekiq
+
+```
+bundle exec sidekiq
+```
+
+* start the database
+```
+docker-compose up
+```
+
+* start the server
+```
+bin/rails s
+```

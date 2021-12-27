@@ -37,13 +37,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'pg'
 gem 'mechanize'
 gem 'colorize'
-gem 'sidekiq', '5.2.7'
+gem 'sidekiq', '6.1.1'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'dotenv-rails'
 gem 'rack', '2.1.4'
 gem 'slack-notify'
-gem 'redis'
+gem 'redis', '4.5.0'
 gem 'rest-client'
 
 group :development, :test do

@@ -22,3 +22,6 @@
 
 config/docker/data/
 .env
+
+data/
+dump.rdb
