@@ -72,7 +72,7 @@ GEM
     coffee-script-source (1.12.2)
     colorize (0.8.1)
     concurrent-ruby (1.1.8)
-    connection_pool (2.2.3)
+    connection_pool (2.2.5)
     crass (1.0.6)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -178,7 +178,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.2.5)
+    redis (4.5.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -196,11 +196,10 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sidekiq (5.2.7)
-      connection_pool (~> 2.2, >= 2.2.2)
-      rack (>= 1.5.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
+    sidekiq (6.1.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -264,10 +263,10 @@ DEPENDENCIES
   puma (~> 3.12)
   rack (= 2.1.4)
   rails (~> 6.1.3.1)
-  redis
+  redis (= 4.5.0)
   rest-client
   sass-rails (~> 5.0)
-  sidekiq (= 5.2.7)
+  sidekiq (= 6.1.1)
   sinatra
   slack-notify
   slim
