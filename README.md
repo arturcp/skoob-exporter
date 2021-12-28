@@ -78,3 +78,24 @@ docker-compose up
 ```
 bin/rails s
 ```
+
+# To configure heroku
+
+```
+# log in with correct account and run:
+heroku git:remote -r exportador-do-skoob -a exportador-do-skoob
+
+# then, log in with correct account and run:
+heroku git:remote -r skoob-exporter -a skoob-exporter
+```
+
+To push new code:
+
+```
+git push skoob-exporter master
+```
+or
+
+```
+git push exportador-do-skoob master
+```
