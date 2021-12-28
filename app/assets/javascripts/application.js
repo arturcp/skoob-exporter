@@ -54,5 +54,5 @@ function checkImportStatus(url) {
         checkImportStatus(url);
       }
     })
-  }, 5000);
+  }, 7000);
 }
