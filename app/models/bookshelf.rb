@@ -76,5 +76,7 @@ class Bookshelf
     end
 
     isbn.delete('-._')
+  rescue
+    0
   end
 end
