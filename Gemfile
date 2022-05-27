@@ -41,7 +41,7 @@ gem 'sidekiq', '5.2.7'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'dotenv-rails'
-gem 'rack', '2.1.4'
+gem 'rack', '2.1.4.1'
 gem 'slack-notify'
 gem 'redis'
 gem 'rest-client'
