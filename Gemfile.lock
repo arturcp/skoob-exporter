@@ -263,6 +263,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mechanize
+  mini_portile2 (> 2.0.0)
   pg
   puma (~> 3.12)
   rack (= 2.1.4)
