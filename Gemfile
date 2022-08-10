@@ -41,7 +41,7 @@ gem 'pg'
 gem 'rack', '2.1.4'
 gem 'redis'
 gem 'rest-client'
-gem 'sidekiq', '5.2.7'
+gem 'sidekiq', '6.5.4'
 gem 'sinatra', require: false
 gem 'slack-notify'
 gem 'slim'
