@@ -34,17 +34,18 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'pg'
-gem 'mechanize'
 gem 'colorize'
-gem 'sidekiq', '5.2.7'
-gem 'sinatra', require: false
-gem 'slim'
 gem 'dotenv-rails'
+gem 'mechanize'
+gem 'pg'
 gem 'rack', '2.1.4'
-gem 'slack-notify'
 gem 'redis'
 gem 'rest-client'
+gem 'sidekiq', '5.2.7'
+gem 'sinatra', require: false
+gem 'slack-notify'
+gem 'slim'
+gem "mini_portile2", "> 2.0.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
