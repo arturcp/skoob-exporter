@@ -10,9 +10,27 @@ services:
       POSTGRES_USER: postgres
     ports:
       - "5432:5432"
+  redis:
+    image: redis:6.0.10-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+    volumes:
+      - redis_data_path:/data:delegated
+    healthcheck:
+      test: redis-cli ping
+      start_period: 10s
+      interval: 1s
+      timeout: 3s
+      retries: 30
 volumes:
   data01:
     driver: local
+  redis_data_path:
 networks:
   elastic:
     driver: bridge
