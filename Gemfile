@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'colorize'
 gem 'dotenv-rails'
+gem 'execjs'
 gem 'mechanize'
 gem 'pg'
 gem 'rack', '2.1.4'
