@@ -1,6 +1,6 @@
 version: "2.2"
 services:
-  postgres:
+  skoob-postgres:
     image: "postgres:latest"
     volumes:
       - "./data/postgres:/var/lib/postgresql/data"
@@ -10,9 +10,9 @@ services:
       POSTGRES_USER: postgres
     ports:
       - "5432:5432"
-  redis:
+  skoob-redis:
     image: redis:6.0.10-alpine
-    container_name: redis
+    container_name: skoob-redis
     ports:
       - "6379:6379"
     logging:
@@ -28,9 +28,9 @@ services:
       timeout: 3s
       retries: 30
 volumes:
-  data01:
+  skoob-data:
     driver: local
   redis_data_path:
 networks:
-  elastic:
+  default:
     driver: bridge
