@@ -1,4 +1,12 @@
 #!/bin/bash
 
-RAILS_ENV=production bin/rake assets:precompile
-git push production master
+RED='\033[031m'
+NC='\033[0m' # No Color
+
+if git ls-remote --exit-code dokku; then
+  git push dokku main
+else
+  echo -e ""
+  echo -e "${RED}The production remote (dokku) is not set. Ask the admin for credentials.${NC}"
+  echo -e ""
+fi
