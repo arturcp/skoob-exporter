@@ -51,9 +51,6 @@ will be redirected to a page that will wait until the process is over. It will
 hold the user there and be pooling from time to time. When all books are imported,
 it will generate the .csv file and the browser will download it.
 
-# Environments
-
-- [Heroku](docs/heroku.md)
 
 # How to run it locally
 
@@ -77,25 +74,4 @@ docker-compose up
 * start the server
 ```
 bin/rails s
-```
-
-# To configure heroku
-
-```
-# log in with correct account and run:
-heroku git:remote -r exportador-do-skoob -a exportador-do-skoob
-
-# then, log in with correct account and run:
-heroku git:remote -r skoob-exporter -a skoob-exporter
-```
-
-To push new code:
-
-```
-git push skoob-exporter master
-```
-or
-
-```
-git push exportador-do-skoob master
 ```
