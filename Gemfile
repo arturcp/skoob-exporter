@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '3.0.0'
+ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.3.1'
@@ -37,7 +37,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'colorize'
 gem 'dotenv-rails'
 gem 'mechanize'
+gem "mini_portile2", "> 2.0.0"
 gem 'pg'
+gem 'psych', '< 4'
 gem 'rack', '2.1.4'
 gem 'redis'
 gem 'rest-client'
@@ -45,7 +47,6 @@ gem 'sidekiq', '5.2.7'
 gem 'sinatra', require: false
 gem 'slack-notify'
 gem 'slim'
-gem "mini_portile2", "> 2.0.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

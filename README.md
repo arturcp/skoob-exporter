@@ -11,8 +11,8 @@ a csv file in the format Goodreads expect, so you can easily
 
 # Dependencies
 
-- Ruby `3.0.0`
-- Rails `5.0.0.1`
+- Ruby `3.1.2`
+- Rails `6.1.3.1`
 - Postgress `9.6.1`
 
 To prepare your project, adjust your database configurations on `db/database.yml`
