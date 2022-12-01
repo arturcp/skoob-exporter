@@ -131,7 +131,7 @@ GEM
     mini_mime (1.0.3)
     mini_portile2 (2.8.0)
     minitest (5.16.3)
-    mustermann (1.1.2)
+    mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     net-http-digest_auth (1.4.1)
     net-http-persistent (4.0.1)
@@ -146,8 +146,8 @@ GEM
     public_suffix (5.0.0)
     puma (3.12.6)
     racc (1.6.0)
-    rack (2.1.4)
-    rack-protection (2.0.8.1)
+    rack (2.2.4)
+    rack-protection (3.0.4)
       rack
     rack-test (2.0.2)
       rack (>= 1.3)
@@ -205,10 +205,10 @@ GEM
       rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    sinatra (2.0.8.1)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.8.1)
+    sinatra (3.0.4)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.0.4)
       tilt (~> 2.0)
     slack-notify (0.6.0)
       faraday (>= 0.9)
@@ -268,7 +268,7 @@ DEPENDENCIES
   pg
   psych (< 4)
   puma (~> 3.12)
-  rack (= 2.1.4)
+  rack (= 2.2.4)
   rails (~> 6.1.3.1)
   redis
   rest-client
