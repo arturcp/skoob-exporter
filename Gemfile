@@ -40,7 +40,7 @@ gem 'mechanize'
 gem "mini_portile2", "> 2.0.0"
 gem 'pg'
 gem 'psych', '< 4'
-gem 'rack', '2.1.4'
+gem 'rack', '2.1.4.2'
 gem 'redis'
 gem 'rest-client'
 gem 'sidekiq', '5.2.7'
