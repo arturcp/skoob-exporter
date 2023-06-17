@@ -7,10 +7,12 @@ end
 
 ruby '3.1.2'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.3.1'
-# Use Puma as the app server
-gem 'puma', '~> 3.12'
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem 'rails', '~> 7.0.5'
+
+# Use the Puma web server [https://github.com/puma/puma]
+gem "puma", "~> 5.0"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,26 +42,29 @@ gem 'mechanize'
 gem "mini_portile2", "> 2.0.0"
 gem 'pg'
 gem 'psych', '< 4'
-gem 'rack', '2.1.4'
+gem 'rack'
 gem 'redis'
 gem 'rest-client'
-gem 'sidekiq', '5.2.7'
+gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slack-notify'
 gem 'slim'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+	# See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'web-console'
+
+  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  # gem "rack-mini-profiler"
+
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

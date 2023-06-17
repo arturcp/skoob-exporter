@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
   skoob-redis:
-    image: redis:6.0.10-alpine
+    image: redis:7.0.11-alpine
     container_name: skoob-redis
     ports:
       - "6379:6379"
