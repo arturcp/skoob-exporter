@@ -1,10 +1,4 @@
 class CrawlersController < ApplicationController
-  def index
-    if ENV['PRODUCTION_URL'].present?
-      redirect_to ENV['PRODUCTION_URL'], status: 301
-    end
-  end
-
   def create
     user = SkoobUser.login(params[:email], params[:password])
 
