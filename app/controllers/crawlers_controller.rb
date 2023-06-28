@@ -1,4 +1,6 @@
 class CrawlersController < ApplicationController
+  def index; end
+
   def create
     user = SkoobUser.login(params[:email], params[:password])
 

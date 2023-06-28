@@ -20,6 +20,8 @@
     </p>
   </div>
   <div class="col-md-4 login-box">
+    <input type="hidden" value="<% request.fullpath %>">
+    <input type="hidden" value="<% request.protocol %>">
     <%= form_tag crawlers_path, class: 'form-signin' do %>
       <div class="form-group">
         <label>Email</label>
