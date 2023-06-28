@@ -51,27 +51,28 @@ will be redirected to a page that will wait until the process is over. It will
 hold the user there and be pooling from time to time. When all books are imported,
 it will generate the .csv file and the browser will download it.
 
-
 # How to run it locally
 
-* Start the redis:
+- Start the redis:
 
 ```
 redis
 ```
 
-* start sidekiq
+- start sidekiq
 
 ```
 bundle exec sidekiq
 ```
 
-* start the database
+- start the database
+
 ```
 docker-compose up
 ```
 
-* start the server
+- start the server
+
 ```
 bin/rails s
 ```

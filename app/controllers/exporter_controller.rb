@@ -5,9 +5,13 @@ class ExporterController < ApplicationController
 
     Book.where(skoob_user_id: skoob_user_id).destroy_all
 
-    send_data csv,
-      type: 'text/csv; charset=utf-8; header=present',
-      disposition: "attachment; filename=skoob_books_#{skoob_user_id}.csv"
+    file_name = "skoob_books_#{skoob_user_id}.csv"
+
+    # Set the response headers
+    headers['Content-Disposition'] = "attachment; filename=\"#{file_name}\""
+    headers['Content-Type'] = 'text/csv'
+
+    send_data csv, filename: file_name, type: "text/csv", disposition: "attachment"
   end
 
   private

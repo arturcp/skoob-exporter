@@ -8,9 +8,8 @@
        %>
      </p>
      <div class="hidden" id="download">
-       <%= form_tag exporter_path(@user.skoob_user_id), method: :get do %>
-         <%= submit_tag 'Baixar', class: 'btn btn-lg btn-success btn-block' %>
-       <% end %>
+       <%= link_to 'Baixar', exporter_path(@user.skoob_user_id), class: 'btn btn-lg btn-success btn-block' %>
+       <br />
      </div>
   </div>
   <div class="col-sm-10">
