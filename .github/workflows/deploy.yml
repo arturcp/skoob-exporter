@@ -1,0 +1,23 @@
+name: Deploy with Dokku
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Deploy code
+        uses: idoberko2/dokku-deploy-github-action@v1
+        with:
+          ssh-private-key: ${{ secrets.DOKKU_SSH_KEY }}
+          dokku-host: ${{secrets.DOKKU_SERVER}}
+          app-name: ${{secrets.DOKKU_APP_NAME}}
+          git-push-flags: '--force'
+          remote-branch: 'main'
