@@ -65,10 +65,16 @@ redis
 bundle exec sidekiq
 ```
 
+or
+
+```
+bin/sidekiq
+```
+
 - start the database
 
 ```
-docker-compose up
+docker compose up
 ```
 
 - start the server
