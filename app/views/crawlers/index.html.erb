@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-md-8">
     <h2 class="page-header">Exporte seus livros do Skoob</h2>
     <p class="lead">
       Você quer migrar para o <a href="https://www.goodreads.com/">Goodreads</a>
@@ -28,10 +28,14 @@
         <%= text_field_tag 'email', nil, class: 'form-control' %>
       </div>
 
+      <br />
+
       <div class="form-group">
         <label>Senha</label>
         <%= password_field_tag 'password', nil, class: 'form-control' %>
       </div>
+
+      <br />
 
       <div class="form-group">
         <%= submit_tag 'Gerar', class: 'btn btn-lg btn-primary btn-block' %>

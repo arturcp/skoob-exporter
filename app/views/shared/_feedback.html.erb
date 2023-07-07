@@ -1,0 +1,42 @@
+<div class="feedback">
+  <button class="btn" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+    <img src="/comments-icon.svg" alt="Fale conosco"/>
+  </button>
+  <br />
+  <span>Tive um problema</span>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="feedbackModalLabel">Reportar problema</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Se você está com alguma dificuldade ou o exportador não está funcionando como deveria, por favor, informe o que está acontecendo para que possamos corrigir o problema.
+        </p>
+        <div class="form-group">
+          <label>Nome (opcional)</label>
+          <%= text_field_tag 'name', nil, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <label>Email (opcional)</label>
+          <%= text_field_tag 'email', nil, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <label>Mensagem</label>
+          <%= text_area_tag 'message', nil, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" data-send-feedback-message>Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
