@@ -8,15 +8,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function checkImportStatus(url) {
-  setTimeout(function() {
-    console.log("checking...");
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
+  console.log("checking status...");
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
 
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        const data = JSON.parse(xhr.responseText);
-        const countElement = document.querySelector('[data-count]');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      const data = JSON.parse(xhr.responseText);
+      const countElement = document.querySelector('[data-count]');
+
+      if (countElement) {
         countElement.textContent = data.count + ' / ' + data.total;
 
         const progressBar = document.querySelector('.progress-bar');
@@ -39,29 +40,40 @@ function checkImportStatus(url) {
           ddElement.innerHTML = '';
           ddElement.appendChild(ul);
         }
-
-        if (data.status === 0) {
-          const statusElement = document.querySelector('[data-status]');
-          statusElement.classList.add('finished');
-          statusElement.textContent = 'Concluído';
-
-          const downloadElement = document.getElementById('download');
-          downloadElement.classList.remove('hidden');
-
-          const importingIndicator = document.querySelector('.importing-indicator');
-          importingIndicator.style.display = 'none';
-
-          const importedIndicator = document.querySelector('.imported-indicator');
-          importedIndicator.style.display = 'block';
-        } else {
-          const statusElement = document.querySelector('[data-status]');
-          statusElement.textContent = 'Em andamento';
-
-          checkImportStatus(url);
-        }
       }
-    };
 
-    xhr.send();
-  }, 7000);
+      if (data.status === 0) {
+        const downloadElement = document.getElementById('download');
+        downloadElement.classList.remove('hidden');
+
+        const importingIndicator = document.querySelector('.importing-indicator');
+        importingIndicator.style.display = 'none';
+
+        const importedIndicator = document.querySelector('.imported-indicator');
+        importedIndicator.style.display = 'block';
+
+        const importingCard = document.querySelector('.importing-card');
+        importingCard.style.display = 'none';
+
+        const tableBody = document.querySelector('[data-table-card-body]');
+        data.books.forEach((item) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = '<td>' + item.title + '</td><td>' + item.author + '</td><td>' + item.isbn + '</td><td>' + item.publisher + '</td><td>';
+          tableBody.appendChild(tr);
+        });
+
+        const tableTitle = document.querySelector('[data-table-card-title]');
+        tableTitle.textContent = `Livros importados: ${data.books.length}`;
+
+        const resultsTable = document.querySelector('.results-table');
+        resultsTable.style.display = 'block';
+      } else {
+        setTimeout(() => {
+          checkImportStatus(url);
+        }, 7000);
+      }
+    }
+  };
+
+  xhr.send();
 }

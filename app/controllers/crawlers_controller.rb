@@ -5,6 +5,8 @@ class CrawlersController < ApplicationController
     user = SkoobUser.login(params[:email], params[:password])
 
     if user.skoob_user_id > 0
+      Book.where(skoob_user_id: user.skoob_user_id).destroy_all
+
       user.update(import_status: 1)
       SkoobImporterJob.perform_later(user)
       send_slack_notification(user.skoob_user_id)
@@ -18,12 +20,16 @@ class CrawlersController < ApplicationController
 
   def show
     @user = SkoobUser.find_by(skoob_user_id: params[:id])
+
+    if @user.import_status == 0 && Book.where(skoob_user_id: @user.skoob_user_id).count == 0
+      redirect_to root_path
+    end
   end
 
   private
 
   def send_slack_notification(skoob_user_id)
     message = "User #{skoob_user_id} is importing books right now"
-    Slack::Message.send(message, notify_channel: true)
+    Slack::Message.send(message)
   end
 end
