@@ -1,5 +1,17 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 document.addEventListener('DOMContentLoaded', function() {
+  const feedbackButton = document.querySelector('.feedback-button');
+  if (feedbackButton) {
+    feedbackButton.addEventListener('click', function() {
+      const feedbackForm = document.querySelector('.feedback-form');
+      if (feedbackForm.style.display === 'block') {
+        feedbackForm.style.display = 'none';
+      } else {
+        feedbackForm.style.display = 'block';
+      }
+    });
+  }
+
   const loading = document.querySelector('[data-loading-url]');
 
   if (loading) {

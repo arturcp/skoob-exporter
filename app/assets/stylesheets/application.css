@@ -76,6 +76,27 @@ fieldset {
   text-align: left;
 }
 
+.feedback {
+  bottom: 20px;
+  position: fixed;
+  right: 20px;
+  z-index: 2;
+}
+
+.feedback .btn {
+  background-color: transparent;
+  border-radius: 50%;
+  width: 90px;
+}
+
+.feedback span {
+  font-size: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
 /* Animations */
 
 .slide-in-fwd-center {
