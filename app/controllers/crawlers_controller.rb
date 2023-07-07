@@ -6,7 +6,7 @@ class CrawlersController < ApplicationController
 
     if user.skoob_user_id > 0
       user.update(import_status: 1)
-      SkoobImporterWorker.perform_async(user.skoob_user_id)
+      SkoobImporterJob.perform_later(user)
       send_slack_notification(user.skoob_user_id)
 
       redirect_to crawler_path(user.skoob_user_id)

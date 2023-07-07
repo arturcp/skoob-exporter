@@ -10,45 +10,51 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkImportStatus(url) {
   setTimeout(function() {
     console.log("checking...");
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
 
     xhr.onload = function() {
       if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        var countElement = document.querySelector('[data-count]');
+        const data = JSON.parse(xhr.responseText);
+        const countElement = document.querySelector('[data-count]');
         countElement.textContent = data.count + ' / ' + data.total;
 
-        var progressBar = document.querySelector('.progress-bar');
-        var percentage = Math.ceil(data.count * 100 / data.total);
+        const progressBar = document.querySelector('.progress-bar');
+        const percentage = Math.ceil(data.count * 100 / data.total);
         progressBar.style.width = percentage + '%';
         progressBar.querySelector('.sr-only').textContent = percentage + '% completed';
 
         if (data.duplicated.length > 0) {
-          var duplicatedElement = document.querySelector('[data-duplicated]');
+          const duplicatedElement = document.querySelector('[data-duplicated]');
           duplicatedElement.classList.remove('hidden');
 
-          var ul = document.createElement('ul');
+          const ul = document.createElement('ul');
           data.duplicated.forEach(function(item) {
-            var li = document.createElement('li');
+            const li = document.createElement('li');
             li.innerHTML = '<span>[ISBN: ' + item.isbn + '] </span>' + item.title + ' - de ' + item.author;
             ul.appendChild(li);
           });
 
-          var ddElement = duplicatedElement.querySelector('dd');
+          const ddElement = duplicatedElement.querySelector('dd');
           ddElement.innerHTML = '';
           ddElement.appendChild(ul);
         }
 
         if (data.status === 0) {
-          var statusElement = document.querySelector('[data-status]');
+          const statusElement = document.querySelector('[data-status]');
           statusElement.classList.add('finished');
           statusElement.textContent = 'Concluído';
 
-          var downloadElement = document.getElementById('download');
+          const downloadElement = document.getElementById('download');
           downloadElement.classList.remove('hidden');
+
+          const importingIndicator = document.querySelector('.importing-indicator');
+          importingIndicator.style.display = 'none';
+
+          const importedIndicator = document.querySelector('.imported-indicator');
+          importedIndicator.style.display = 'block';
         } else {
-          var statusElement = document.querySelector('[data-status]');
+          const statusElement = document.querySelector('[data-status]');
           statusElement.textContent = 'Em andamento';
 
           checkImportStatus(url);

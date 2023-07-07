@@ -30,6 +30,15 @@ fieldset {
   margin: 50px;
 }
 
+.imported-indicator {
+  display: none;
+  margin-bottom: 23px;
+}
+
+.status-icon {
+  height: 130px;
+}
+
 .running {
   color: #ffa500;
   font-weight: bold;

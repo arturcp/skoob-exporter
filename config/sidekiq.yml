@@ -1,6 +1,3 @@
 ---
-:queues:
-  - skoob_importer
-
 production:
   :concurrency: 1
