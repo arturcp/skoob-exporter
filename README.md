@@ -11,8 +11,8 @@ a csv file in the format Goodreads expect, so you can easily
 
 # Dependencies
 
-- Ruby `3.1.2`
-- Rails `6.1.3.1`
+- Ruby `3.2.2`
+- Rails `7.0.5.1`
 - Postgress `9.6.1`
 
 To prepare your project, adjust your database configurations on `db/database.yml`
@@ -82,3 +82,15 @@ docker compose up
 ```
 bin/rails s
 ```
+
+# Clean up job
+
+When a user imports his/her books, they are going to be saved into the `books` table. This table is going to be used to generate the csv file. After the csv file is generated, the books are not needed anymore. To clean up the database, run:
+
+```
+bin/rake skoob:clean_up
+```
+
+This will delete books older than 1 day ago (or books that have no `created_at` set. That happens because the timestamp was added with the website up and running, so any book created pior to the timestamp migration will have `null` as the created_at value).
+
+The clean up job is scheduled to run every day at 3am (UTC).
