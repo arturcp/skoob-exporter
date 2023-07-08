@@ -3,8 +3,6 @@ class ExporterController < ApplicationController
     csv = Exporter.new(skoob_user_id).generate_csv
     send_slack_notification(csv)
 
-    Book.where(skoob_user_id: skoob_user_id).destroy_all
-
     file_name = "skoob_books_#{skoob_user_id}.csv"
 
     # Set the response headers
@@ -27,6 +25,6 @@ class ExporterController < ApplicationController
   def send_slack_notification(csv)
     books = csv.split("\n").length - 1
     message = "User #{skoob_user_id} has just exported #{books} books from Skoob!"
-    Slack::Message.send(message, notify_channel: true)
+    Slack::Message.send(message)
   end
 end

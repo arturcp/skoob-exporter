@@ -1,0 +1,49 @@
+<section class="importing-card col-sm-10">
+  <% if user.import_status == 1 %>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Importação</h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt>Status</dt>
+          <dd>
+            <span class="running" data-status>Em andamento</span>
+          </dd>
+
+          <dt><br />Email</dt>
+          <dd>
+            <%= user.email %>
+          </dd>
+
+          <dt><br />Skoob ID</dt>
+          <dd>
+            <%= user.skoob_user_id %>
+          </dd>
+
+          <dt><br />Livros importados</dt>
+          <dd data-count>
+          </dd>
+        </dl>
+
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+            role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+            style="width: 0%">
+          </div>
+        </div>
+
+        <div data-duplicated class="hidden">
+          <dl>
+            <dt><br />
+              Livros duplicados
+            </dt>
+            <dd>
+
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</section>

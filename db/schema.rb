@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_26_210446) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_194634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_210446) do
     t.string "publisher"
     t.integer "year"
     t.integer "skoob_book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "skoob_users", id: :serial, force: :cascade do |t|
