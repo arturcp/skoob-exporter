@@ -2,8 +2,10 @@
 
 import Feedback from "./lib/feedback";
 import ImportStatus from "./lib/import-status";
+import Login from "./lib/login";
 
 document.addEventListener('DOMContentLoaded', () => {
   new Feedback();
   new ImportStatus();
+  new Login();
 });

@@ -22,7 +22,7 @@
   <div class="col-md-4 login-box">
     <input type="hidden" value="<% request.fullpath %>">
     <input type="hidden" value="<% request.protocol %>">
-    <%= form_tag crawlers_path, class: 'form-signin' do %>
+    <%= form_tag crawlers_path, class: 'form-signin', id: 'crawler-form' do %>
       <div class="form-group">
         <label>Email</label>
         <%= text_field_tag 'email', nil, class: 'form-control' %>
@@ -38,7 +38,7 @@
       <br />
 
       <div class="form-group">
-        <%= submit_tag 'Gerar', class: 'btn btn-lg btn-primary btn-block' %>
+        <%= submit_tag 'Gerar', class: 'btn btn-lg btn-primary btn-block', id: 'crawler-submit' %>
       </div>
     <% end %>
 
