@@ -71,6 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+const PUBLICATION_TYPES = {
+  'book': 'Livro',
+  'comic': 'HQ',
+  'magazine': 'Revista',
+};
+
 function checkImportStatus(url) {
   console.log("checking status...");
   const xhr = new XMLHttpRequest();
@@ -119,14 +125,14 @@ function checkImportStatus(url) {
         importingCard.style.display = 'none';
 
         const tableBody = document.querySelector('[data-table-card-body]');
-        data.books.forEach((item) => {
+        data.publications.forEach((item) => {
           const tr = document.createElement('tr');
-          tr.innerHTML = '<td>' + item.title + '</td><td>' + item.author + '</td><td>' + item.isbn + '</td><td>' + item.publisher + '</td><td>';
+          tr.innerHTML = `<td>${item.title}</td><td>${item.author}</td><td>${item.isbn}</td><td>${item.publisher}</td><td>${PUBLICATION_TYPES[item.publication_type] || ''}</td>`
           tableBody.appendChild(tr);
         });
 
         const tableTitle = document.querySelector('[data-table-card-title]');
-        tableTitle.textContent = `Livros importados: ${data.books.length}`;
+        tableTitle.textContent = `Publicações importadas: ${data.publications.length}`;
 
         const resultsTable = document.querySelector('.results-table');
         resultsTable.style.display = 'block';

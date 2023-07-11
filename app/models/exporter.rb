@@ -10,14 +10,14 @@ class Exporter
         'Publisher', 'Binding', 'Year Published', 'Original Publication Year',
         'Date Read', 'Date Added', 'Bookshelves', 'My Review']
 
-    books = Book.where(skoob_user_id: @skoob_user_id)
+    publications = Publication.where(skoob_user_id: @skoob_user_id)
 
     CSV.generate(headers: true) do |csv|
       csv << header
 
-      books.each do |book|
-        csv << [book.title, book.author, book.isbn, nil, nil,
-          book.publisher, nil, book.year, book.year,
+      publications.each do |publication|
+        csv << [publication.title, publication.author, publication.isbn, nil, nil,
+          publication.publisher, nil, publication.year, publication.year,
           nil, nil, nil, nil]
       end
     end

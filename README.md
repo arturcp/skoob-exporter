@@ -1,10 +1,9 @@
 # Skoob Exporter
 
-Skoob has no public API and does not provide an easy way to export your books to
-other social networks like Goodreads.
+[Skoob](https://skoob.com.br/) has no public API and does not provide an easy way to export your publications (books, comics, and magazines) to other social networks like [Goodreads](https://www.goodreads.com/).
 
-To fix that, this project gets information about all your books and generates
-a csv file in the format Goodreads expect, so you can easily
+To fix that, this project imports all publications from your Skoob account and generates
+a CSV file in the format that Goodreads expect, so you can easily
 [import it here](https://www.goodreads.com/review/import).
 
 **[Check the website](http://skoob-exporter.colabs.dev)**
@@ -42,14 +41,14 @@ At the end of the script, it will provide your skoob id. It is a number like
 
 Remember to replace `999999` with your skoob id. The instructions to generate the
 csv will also be provided by the skoob:import task, so you don't need to remember
-the command to generate the csv.
+the command to generate the CSV.
 
 # How to run in the web
 
 Access the root url and provide your skoob credentials. Once you submit, you
 will be redirected to a page that will wait until the process is over. It will
-hold the user there and be pooling from time to time. When all books are imported,
-it will generate the .csv file and the browser will download it.
+hold the user there and be pooling from time to time. When all publications are imported,
+it will generate the CSV file and the browser will download it.
 
 # How to run it locally
 
@@ -85,12 +84,12 @@ bin/rails s
 
 # Clean up job
 
-When a user imports his/her books, they are going to be saved into the `books` table. This table is going to be used to generate the csv file. After the csv file is generated, the books are not needed anymore. To clean up the database, run:
+When a user imports publications, each one of them will be saved into the `publications` table. This table is going to be used to generate the CSV file. After the CSV is generated, the publications are not needed anymore. To clean up the database, run:
 
 ```
 bin/rake skoob:clean_up
 ```
 
-This will delete books older than 1 day ago (or books that have no `created_at` set. That happens because the timestamp was added with the website up and running, so any book created pior to the timestamp migration will have `null` as the created_at value).
+This will delete publications older than 1 day ago (or publications that have no `created_at` set. That happens because the timestamp was added with the website up and running, so any book created pior to the timestamp migration will have `null` as the created_at value).
 
 The clean up job is scheduled to run every day at 3am (UTC).

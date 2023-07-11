@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_07_194634) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_123057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "books", id: :serial, force: :cascade do |t|
+  create_table "publications", id: :serial, force: :cascade do |t|
     t.integer "skoob_user_id"
     t.string "title"
     t.string "author"
     t.string "isbn"
     t.string "publisher"
     t.integer "year"
-    t.integer "skoob_book_id"
+    t.integer "skoob_publication_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "publication_type", default: 0
   end
 
   create_table "skoob_users", id: :serial, force: :cascade do |t|
@@ -31,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_194634) do
     t.integer "skoob_user_id"
     t.integer "import_status", default: 0
     t.jsonb "not_imported", default: {}, null: false
-    t.integer "books_count", default: 0
+    t.integer "publications_count", default: 0
   end
 
 end
