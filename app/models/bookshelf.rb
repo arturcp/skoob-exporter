@@ -9,28 +9,66 @@ class Bookshelf
   end
 
   def read
-    fetch_books!
+    return [] unless user.skoob_user_id.present?
+
+    calculate_total_publications
+
+    books_data = fetch_books!
+    comics_data = fetch_comics!
+    magazines_data = fetch_magazines!
+
+    {
+      books: books_data[:books] + comics_data[:books] + magazines_data[:books],
+      duplicated: books_data[:duplicated] + comics_data[:duplicated] + magazines_data[:duplicated]
+    }
   end
 
   private
 
+  def calculate_total_publications
+    books_url = SkoobUrls.books_shelf_url(user.skoob_user_id)
+    books_total = count_publications_from_shelf(books_url)
+
+    comics_url = SkoobUrls.comics_shelf_url(user.skoob_user_id)
+    comics_total = count_publications_from_shelf(comics_url)
+
+    magainzes_url = SkoobUrls.magazines_shelf_url(user.skoob_user_id)
+    magazines_total = count_publications_from_shelf(magainzes_url)
+
+    user.update(books_count: books_total + comics_total + magazines_total)
+  end
+
+  def count_publications_from_shelf(shelf_url)
+    data = read_url(shelf_url)
+    data.dig(:paging, :total).to_i
+  end
+
   def fetch_books!
-    return [] unless user.skoob_user_id.present?
+    fetch_publications!(:books)
+  end
 
+  def fetch_comics!
+    fetch_publications!(:comics)
+  end
+
+  def fetch_magazines!
+    fetch_publications!(:magazines)
+  end
+
+  # Type can be: :books, :comics, :magazines
+  def fetch_publications!(type)
+    puts "\n\n============= Fetching #{type.to_s.cyan} =============\n\n"
     page = 1
-    books = []
-    duplicated_books = []
+    publications = []
+    duplicated_publications = []
 
-    url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
-    response = RestClient.get(url)
-    data = JSON.load(response.body).deep_symbolize_keys
-
-    user.update(books_count: data[:paging][:total].to_i)
+    url = SkoobUrls.bookshelf_url(user_id: user.skoob_user_id, page: page, type: type)
+    data = read_url(url)
 
     while true do
-      puts "********** page #{page} ***********"
+      puts "PAGE #{page}"
 
-      books += data[:response].map do |item|
+      publications += data[:response].map do |item|
         edition = item[:edicao]
 
         book = Book.new(
@@ -44,7 +82,7 @@ class Bookshelf
         )
 
         if Book.exists?(skoob_user_id: @user.skoob_user_id, skoob_book_id: edition[:id])
-          duplicated_books << book
+          duplicated_publications << book
           puts "Book #{edition[:titulo]} already exists...".red
         else
           book.save!
@@ -54,16 +92,15 @@ class Bookshelf
 
       page += 1
 
-      url = SkoobUrls.bookshelf_read(user.skoob_user_id, page)
-      response = RestClient.get(url)
-      data = JSON.load(response.body).deep_symbolize_keys
+      url = SkoobUrls.bookshelf_url(user_id: user.skoob_user_id, page: page, type: type)
+      data = read_url(url)
 
       break if data[:response].empty?
     end
 
     {
-      books: books,
-      duplicated: duplicated_books
+      books: publications,
+      duplicated: duplicated_publications
     }
   end
 
@@ -78,5 +115,10 @@ class Bookshelf
     isbn.delete('-._')
   rescue
     0
+  end
+
+  def read_url(url)
+    response = RestClient.get(url)
+    data = JSON.load(response.body).deep_symbolize_keys
   end
 end
