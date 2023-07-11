@@ -1,14 +1,14 @@
 require 'open-uri'
 
-class Bookshelf
-  attr_reader :user, :books
+class Publications
+  attr_reader :user, :publications
 
   def initialize(user)
     @mechanize = user.mechanize
     @user = user
   end
 
-  def read
+  def import
     return [] unless user.skoob_user_id.present?
 
     calculate_total_publications
@@ -18,7 +18,7 @@ class Bookshelf
     magazines_data = fetch_magazines!
 
     {
-      books: books_data[:books] + comics_data[:books] + magazines_data[:books],
+      publications: books_data[:publications] + comics_data[:publications] + magazines_data[:publications],
       duplicated: books_data[:duplicated] + comics_data[:duplicated] + magazines_data[:duplicated]
     }
   end
@@ -35,7 +35,7 @@ class Bookshelf
     magainzes_url = SkoobUrls.magazines_shelf_url(user.skoob_user_id)
     magazines_total = count_publications_from_shelf(magainzes_url)
 
-    user.update(books_count: books_total + comics_total + magazines_total)
+    user.update(publications_count: books_total + comics_total + magazines_total)
   end
 
   def count_publications_from_shelf(shelf_url)
@@ -62,7 +62,7 @@ class Bookshelf
     publications = []
     duplicated_publications = []
 
-    url = SkoobUrls.bookshelf_url(user_id: user.skoob_user_id, page: page, type: type)
+    url = SkoobUrls.shelf_url(user_id: user.skoob_user_id, page: page, type: type)
     data = read_url(url)
 
     while true do
@@ -71,41 +71,42 @@ class Bookshelf
       publications += data[:response].map do |item|
         edition = item[:edicao]
 
-        book = Book.new(
+        publication = Publication.new(
           skoob_user_id: @user.skoob_user_id,
           title: edition[:titulo],
           author: edition[:autor],
           publisher: edition[:editora],
           year: edition[:ano].to_i,
-          skoob_book_id: edition[:id],
-          isbn: fetch_isbn(edition[:url])
+          skoob_publication_id: edition[:id],
+          isbn: fetch_isbn(edition[:url]),
+          publication_type: Publication.publication_types[type.to_s.singularize]
         )
 
-        if Book.exists?(skoob_user_id: @user.skoob_user_id, skoob_book_id: edition[:id])
-          duplicated_publications << book
-          puts "Book #{edition[:titulo]} already exists...".red
+        if Publication.exists?(skoob_user_id: @user.skoob_user_id, skoob_publication_id: edition[:id])
+          duplicated_publications << publication
+          puts "Publication #{edition[:titulo]} already exists...".red
         else
-          book.save!
-          puts "#{book.title.yellow}: #{book.isbn}"
+          publication.save!
+          puts "#{publication.title.yellow}: #{publication.isbn}"
         end
       end.compact
 
       page += 1
 
-      url = SkoobUrls.bookshelf_url(user_id: user.skoob_user_id, page: page, type: type)
+      url = SkoobUrls.shelf_url(user_id: user.skoob_user_id, page: page, type: type)
       data = read_url(url)
 
       break if data[:response].empty?
     end
 
     {
-      books: publications,
+      publications: publications,
       duplicated: duplicated_publications
     }
   end
 
   def fetch_isbn(book_url)
-    url = SkoobUrls.book_page_url(book_url)
+    url = SkoobUrls.publication_page_url(book_url)
     isbn = 0
 
     @mechanize.get(url) do |page|

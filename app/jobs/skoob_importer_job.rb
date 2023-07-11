@@ -4,6 +4,6 @@ class SkoobImporterJob < ActiveJob::Base
   sidekiq_options retry: 0, dead: false
 
   def perform(user)
-    Skoob.fetch_books!(user) if user
+    Skoob.fetch_publications!(user) if user
   end
 end

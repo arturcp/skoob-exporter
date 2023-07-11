@@ -1,5 +1,5 @@
 namespace :skoob do
-  desc 'Import books from skoob and persist them in the database'
+  desc 'Import publications from skoob and persist them in the database'
   task import: :environment do
     require 'io/console'
 
@@ -13,12 +13,12 @@ namespace :skoob do
 
     begin
       user = SkoobUser.login(email, password)
-      Skoob.fetch_books!(user)
+      Skoob.fetch_publications!(user)
 
       puts
       puts "Done! Your Skoob ID is #{skoob.user.skoob_user_id.to_s.green}"
       puts
-      puts 'To generate your csv file, run:'
+      puts 'To generate your CSV file, run:'
       puts "bin/rake skoob:csv:generate #{skoob.user.skoob_user_id}".green
     rescue InvalidCredentialsError => e
       puts

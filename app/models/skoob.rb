@@ -2,11 +2,11 @@ require 'rubygems'
 require 'mechanize'
 
 class Skoob
-  def self.fetch_books!(user)
+  def self.fetch_publications!(user)
     raise InvalidCredentialsError.new('Invalid credentials') unless user.skoob_user_id > 0
 
     user.import_library do |skoob_user|
-      Bookshelf.new(skoob_user).read
+      Publications.new(skoob_user).import
     end
   end
 end

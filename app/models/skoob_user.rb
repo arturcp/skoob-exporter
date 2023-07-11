@@ -1,7 +1,7 @@
 require 'mechanize'
 
 class SkoobUser < ActiveRecord::Base
-  has_many :books, primary_key: 'skoob_user_id'
+  has_many :publications, primary_key: 'skoob_user_id'
 
   def self.login(email, password)
     user = find_or_initialize_by(email: email)
@@ -33,9 +33,9 @@ class SkoobUser < ActiveRecord::Base
   def import_library
     update(import_status: 1, not_imported: {})
 
-    books = yield(self)
+    publications = yield(self)
 
-    update(import_status: 0, not_imported: books[:duplicated])
+    update(import_status: 0, not_imported: publications[:duplicated])
   end
 
   def mechanize
