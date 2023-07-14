@@ -1,4 +1,4 @@
-import RestClient from './rest-client';
+import RestClient from 'lib/rest-client';
 
 export default class Feedback {
   constructor() {
