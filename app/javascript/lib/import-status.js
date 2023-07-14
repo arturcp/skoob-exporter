@@ -1,4 +1,4 @@
-import RestClient from './rest-client';
+import RestClient from 'lib/rest-client';
 
 const PUBLICATION_TYPES = {
   'book': 'Livro',
