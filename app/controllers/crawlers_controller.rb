@@ -29,7 +29,7 @@ class CrawlersController < ApplicationController
   private
 
   def send_slack_notification(skoob_user_id)
-    message = "User #{skoob_user_id} is importing publications right now"
+    message = "User https://www.skoob.com.br/usuario/#{skoob_user_id} is importing..."
     Slack::Message.send(message)
   end
 end
