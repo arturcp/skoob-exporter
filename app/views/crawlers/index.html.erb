@@ -38,13 +38,16 @@
       <br />
 
       <div class="form-group">
-        <%= submit_tag 'Gerar', class: 'btn btn-lg btn-primary btn-block', id: 'crawler-submit' %>
+        <%= button_tag 'Gerar', type: "submit", class: 'btn btn-lg btn-primary btn-block', id: 'crawler-submit' %>
+        <span class="loading-info">
+          Você já será redirecionado para outra página, aguarde um momento... estamos conectando com sua conta do Skoob.
+        </span>
       </div>
     <% end %>
 
     <% if flash[:error] %>
-      <div class="alert alert-danger" role="alert">
-        Hum... não conseguimos gerar o arquivo. Verifique seu email e senha e
+      <div class="alert alert-danger login-alert" role="alert">
+        Hum... não conseguimos fazer login no Skoob. Verifique seu email e senha e
         tente novamente.
       </div>
       <% flash[:error] = nil %>

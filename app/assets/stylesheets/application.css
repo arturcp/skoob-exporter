@@ -142,7 +142,20 @@ textarea.required {
 }
 
 .btn-block {
+  position: relative;
   width: 100%;
+}
+
+.book-loading {
+  left: 10px;
+  position: absolute;
+  width: 30px;
+}
+
+.loading-info {
+  display: none;
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 @media (min-width: 1400px) {
