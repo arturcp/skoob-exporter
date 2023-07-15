@@ -26,7 +26,7 @@ class SkoobUser < ActiveRecord::Base
 
     user
   rescue => error
-    Slack::Message.send("Erro ao importar: #{error}", notify_channel: true)
+    Slack::Message.send("Erro ao importar: #{error}", notify_channel: true) unless Rails.env.test?
     raise error
   end
 
