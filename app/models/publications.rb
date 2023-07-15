@@ -79,7 +79,9 @@ class Publications
           year: edition[:ano].to_i,
           skoob_publication_id: edition[:id],
           isbn: fetch_isbn(edition[:url]),
-          publication_type: Publication.publication_types[type.to_s.singularize]
+          publication_type: Publication.publication_types[type.to_s.singularize],
+          date_read: item[:dt_leitura].to_s.split(' ')[0],
+          rating: item[:ranking]
         )
 
         if Publication.exists?(skoob_user_id: @user.skoob_user_id, skoob_publication_id: edition[:id])

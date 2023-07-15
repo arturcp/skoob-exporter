@@ -16,9 +16,11 @@ class Exporter
       csv << header
 
       publications.each do |publication|
-        csv << [publication.title, publication.author, publication.isbn, nil, nil,
+        rating = publication.rating > 0 ? publication.rating : nil
+
+        csv << [publication.title, publication.author, publication.isbn, rating, nil,
           publication.publisher, nil, publication.year, publication.year,
-          nil, nil, nil, nil]
+          publication.date_read, nil, nil, nil]
       end
     end
   end
