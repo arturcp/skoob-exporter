@@ -1,0 +1,56 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: cimg/ruby:3.2.2
+        environment:
+          RAILS_ENV: test
+      - image: circleci/postgres:9
+        environment:
+        - POSTGRES_USER: postgres
+        - POSTGRES_PASSWORD:
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - rails-{{ checksum "Gemfile.lock" }}
+            - rails-
+
+      - run:
+          name: Install Bundler dependencies
+          command: |
+            bundle install --without development \
+                           --deployment \
+                           --retry=3 \
+                           --jobs=3 \
+                           --path vendor/bundle
+
+      - save_cache:
+          key: rails-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Set platform to linux
+          command: |
+            bundle lock --add-platform x86_64-linux
+
+      - run:
+          name: Create and migrate the database
+          command: bundle exec rails db:create db:migrate
+
+      - run: |
+          bundle exec rspec --profile 10 \
+                            --out test_results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      - store_test_results:
+          path: /tmp/test_results
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
