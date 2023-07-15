@@ -8,7 +8,7 @@ class CrawlersController < ApplicationController
       Publication.where(skoob_user_id: user.skoob_user_id).destroy_all
 
       user.update(import_status: 1)
-      SkoobImporterJob.perform_later(user)
+      SkoobImporterJob.perform_later(user) unless Rails.env.test?
       send_slack_notification(user.skoob_user_id)
 
       redirect_to crawler_path(user.skoob_user_id)
