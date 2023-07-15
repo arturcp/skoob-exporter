@@ -33,7 +33,7 @@ export default class ImportStatus {
       this.updateProgressBar(data);
 
       if (data.duplicated.length > 0) {
-        this.showDuplicatedPublications(data);
+        this.showDuplicatedPublications(data.duplicated);
       }
     }
 
