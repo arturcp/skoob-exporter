@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :feedbacks, only: :create
 
   get "/politica-de-privacidade", to: 'privacy_policy#index'
+  get "/termos-e-condicoes", to: 'terms_and_conditions#index'
 
   if Rails.env.production?
     require 'sidekiq/web'
