@@ -52,12 +52,14 @@ gem "mini_portile2", "> 2.0.0"
 gem "pg"
 gem "psych", "< 4"
 gem "rack"
+gem "redcarpet"
 gem "redis"
 gem "rest-client"
 gem "sidekiq"
 gem "sinatra", require: false
 gem "slack-notify"
 gem "slim"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

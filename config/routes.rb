@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :status, path: 'status', only: :show
   resources :feedbacks, only: :create
 
+  get "/politica-de-privacidade", to: 'privacy_policy#index'
+
   if Rails.env.production?
     require 'sidekiq/web'
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
