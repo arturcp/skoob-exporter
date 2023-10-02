@@ -11,4 +11,20 @@ namespace :skoob do
       Slack::Message.send(message)
     end
   end
+
+  desc 'Delete user data to allow account recreation'
+  task cleanup_user: :environment do
+    email = ENV["EMAIL"]
+
+    puts "Cleaning user data. Email: #{email}"
+
+    user = SkoobUser.find_by(email: email)
+    if user
+      user.destroy!
+    else
+      puts "User not found."
+    end
+
+    puts "Done."
+  end
 end
