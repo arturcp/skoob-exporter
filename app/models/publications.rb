@@ -74,6 +74,7 @@ class Publications
         publication = Publication.new(
           skoob_user_id: @user.skoob_user_id,
           title: edition[:titulo],
+          subtitle: edition[:subtitulo],
           author: edition[:autor],
           publisher: edition[:editora],
           year: edition[:ano].to_i,

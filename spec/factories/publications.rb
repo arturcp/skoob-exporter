@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :publication do
     skoob_user_id { Faker::Number.unique.number(digits: 6) }
     title { Faker::Book.title }
+    subtitle { Faker::Lorem.words(number: 4) }
     author { Faker::Book.author }
     isbn { Faker::Code.isbn }
     publisher { Faker::Book.publisher }
