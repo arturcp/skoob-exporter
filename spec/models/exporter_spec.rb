@@ -2,13 +2,13 @@
 
 RSpec.describe Exporter do
   let(:skoob_user) { create(:skoob_user) }
-  let!(:publications) { [create(:publication, title: 'Book 1', author: 'Author 1', isbn: '1234567890', publisher: 'Publisher 1', year: 2022, skoob_user: skoob_user)] }
+  let!(:publications) { [create(:publication, title: 'Book 1', author: 'Author 1', isbn: '1234567890', publisher: 'Publisher 1', year: 2022, skoob_user: skoob_user, subtitle: 'Subtitle for book 1')] }
 
   describe '#generate_csv' do
     it 'generates the CSV file with the correct data' do
       exporter = Exporter.new(skoob_user.skoob_user_id)
-      expected_csv = "Title,Author,ISBN,My Rating,Average Rating,Publisher,Binding,Year Published,Original Publication Year,Date Read,Date Added,Bookshelves,My Review\n" \
-                     "Book 1,Author 1,1234567890,2.5,,Publisher 1,,2022,2022,2023-03-09,,,\n"
+      expected_csv = "Title,Author,ISBN,My Rating,Average Rating,Publisher,Binding,Year Published,Original Publication Year,Date Read,Date Added,Bookshelves,My Review,Subtitle\n" \
+                     "Book 1,Author 1,1234567890,2.5,,Publisher 1,,2022,2022,2023-03-09,,,,Subtitle for book 1\n"
 
       csv_data = exporter.generate_csv
 

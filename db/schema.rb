@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_15_215102) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_23_112542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_215102) do
     t.integer "publication_type", default: 0
     t.date "date_read"
     t.float "rating"
+    t.string "subtitle"
   end
 
   create_table "skoob_users", id: :serial, force: :cascade do |t|

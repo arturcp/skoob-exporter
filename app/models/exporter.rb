@@ -8,7 +8,7 @@ class Exporter
   def generate_csv
     header = ['Title', 'Author', 'ISBN', 'My Rating', 'Average Rating',
         'Publisher', 'Binding', 'Year Published', 'Original Publication Year',
-        'Date Read', 'Date Added', 'Bookshelves', 'My Review']
+        'Date Read', 'Date Added', 'Bookshelves', 'My Review', 'Subtitle']
 
     publications = Publication.where(skoob_user_id: @skoob_user_id)
 
@@ -20,7 +20,7 @@ class Exporter
 
         csv << [publication.title, publication.author, publication.isbn, rating, nil,
           publication.publisher, nil, publication.year, publication.year,
-          publication.date_read, nil, nil, nil]
+          publication.date_read, nil, nil, nil, publication.subtitle]
       end
     end
   end
