@@ -228,6 +228,10 @@ textarea.required {
   height: 20px;
 }
 
+.login-alert {
+  margin-top: 5px;
+}
+
 /* Animations */
 
 .slide-in-fwd-center {

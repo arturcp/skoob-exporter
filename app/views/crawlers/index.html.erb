@@ -53,8 +53,7 @@
 
       <% if flash[:error] %>
         <div class="alert alert-danger login-alert" role="alert">
-          Hum... não conseguimos fazer login no Skoob. Verifique seu email e senha e
-          tente novamente.
+          <%= flash[:error] %>
         </div>
         <% flash[:error] = nil %>
       <% end %>

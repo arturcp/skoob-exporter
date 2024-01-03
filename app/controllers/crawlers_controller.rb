@@ -13,9 +13,12 @@ class CrawlersController < ApplicationController
 
       redirect_to crawler_path(user.skoob_user_id)
     else
-      flash[:error] = 'Invalid Credentials'
+      flash[:error] = 'Não conseguimos fazer login no Skoob. Verifique seu email e senha e tente novamente.'
       redirect_to root_path
     end
+  rescue Net::HTTPGatewayTimeout
+    flash[:error] = 'O Skoob não está respondendo, verifique se consegue logar no site deles normalmente ou tente novamente mais tarde'
+    redirect_to root_path
   end
 
   def show
