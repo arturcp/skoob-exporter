@@ -19,38 +19,45 @@
       Se quiser falar comigo, <a href="https://twitter.com/artur_caliendo">me manda um alô no Twitter.</a>
     </p>
   </div>
-  <div class="col-md-4 login-box">
+  <div class="col-md-4">
     <input type="hidden" value="<% request.fullpath %>">
     <input type="hidden" value="<% request.protocol %>">
-    <%= form_tag crawlers_path, class: 'form-signin', id: 'crawler-form' do %>
-      <div class="form-group">
-        <label>Email</label>
-        <%= text_field_tag 'email', nil, class: 'form-control' %>
-      </div>
+    <div class="login-box">
+      <%= form_tag crawlers_path, class: 'form-signin', id: 'crawler-form' do %>
+        <div class="form-group">
+          <label>Email</label>
+          <%= text_field_tag 'email', nil, class: 'form-control', required: true %>
+        </div>
 
-      <br />
+        <br />
 
-      <div class="form-group">
-        <label>Senha</label>
-        <%= password_field_tag 'password', nil, class: 'form-control' %>
-      </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <%= password_field_tag 'password', nil, class: 'form-control', required: true %>
+        </div>
 
-      <br />
+        <br />
 
-      <div class="form-group">
-        <%= button_tag 'Gerar', type: "submit", class: 'btn btn-lg btn-primary btn-block', id: 'crawler-submit' %>
-        <span class="loading-info">
-          Você já será redirecionado para outra página, aguarde um momento... estamos conectando com sua conta do Skoob.
-        </span>
-      </div>
-    <% end %>
+        <div class="form-group">
+          <div class="alert-box">
+            <strong>Atenção:</strong> Estamos tendo problemas intermitentes de comunicação com o Skoob, algumas pessoas estão conseguindo exportar, outras não. Se você não conseguir
+            exportar, tente novamente mais tarde. Se o problema persistir, <a href="https://twitter.com/artur_caliendo">me avise no Twitter</a>.
+          </div>
 
-    <% if flash[:error] %>
-      <div class="alert alert-danger login-alert" role="alert">
-        Hum... não conseguimos fazer login no Skoob. Verifique seu email e senha e
-        tente novamente.
-      </div>
-      <% flash[:error] = nil %>
-    <% end %>
+          <%= button_tag 'Gerar', type: "submit", class: 'btn btn-lg btn-primary btn-block', id: 'crawler-submit' %>
+          <span class="loading-info">
+            Você já será redirecionado para outra página, aguarde um momento... estamos conectando com sua conta do Skoob.
+          </span>
+        </div>
+      <% end %>
+
+      <% if flash[:error] %>
+        <div class="alert alert-danger login-alert" role="alert">
+          Hum... não conseguimos fazer login no Skoob. Verifique seu email e senha e
+          tente novamente.
+        </div>
+        <% flash[:error] = nil %>
+      <% end %>
+    </div>
   </div>
 </div>
