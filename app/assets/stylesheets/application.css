@@ -26,9 +26,21 @@ fieldset {
 .container .login-box {
   background-color: rgba(108, 143, 179, 0.04);
   border: 1px solid #eee;
-  height: 100%;
   margin-top: 45px;
   padding: 45px 20px;
+}
+
+.container .alert-box {
+  background-color: #fff8f8;
+  border: 1px solid #eee;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 25px 10px;
+
+  strong {
+    font-weight: bold;
+    color: #c90505;
+  }
 }
 
 .container .import-status {
