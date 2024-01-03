@@ -40,9 +40,10 @@ class SkoobUser < ActiveRecord::Base
 
   def mechanize
     @mechanize ||= begin
-      mechanize = Mechanize.new { |agent|
+      mechanize = Mechanize.new do |agent|
         agent.user_agent_alias = Mechanize::AGENT_ALIASES.keys.sample
-      }
+        agent.read_timeout = 90
+      end
 
       mechanize.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
