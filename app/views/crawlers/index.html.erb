@@ -46,7 +46,15 @@
             </div>
           <% end %>
 
-          <%= button_tag 'Gerar', type: "submit", class: 'btn btn-lg btn-primary btn-block', id: 'crawler-submit' %>
+          <% if ENV["SHOW_SKOOB_CAPTCHA_WARNING"] == "true" %>
+            <div class="alert-box">
+              <strong>Atenção:</strong> O Skoob adicionou uma verificação contra bots na página de login deles, o que faz com que nosso exportador não funcione. Estou pesquisando uma solução, mas por enquanto, não é possível exportar seus livros. Se você tiver alguma ideia, <a href="https://twitter.com/artur_caliendo">me avise no Twitter</a>.
+            </div>
+          <% end %>
+
+          <% if ENV["SHOW_SKOOB_CAPTCHA_WARNING"] != "true" %>
+            <%= button_tag 'Gerar', type: "submit", class: 'btn btn-lg btn-primary btn-block', id: 'crawler-submit' %>
+          <% end %>
           <span class="loading-info">
             Você já será redirecionado para outra página, aguarde um momento... estamos conectando com sua conta do Skoob.
           </span>
