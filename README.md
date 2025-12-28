@@ -1,5 +1,7 @@
 # Skoob Exporter
 
+⚠️ Important: this project no longer works, there is a new captcha on Skoob login page, which prevents this script from working ⚠️ 
+
 [Skoob](https://skoob.com.br/) has no public API and does not provide an easy way to export your publications (books, comics, and magazines) to other social networks like [Goodreads](https://www.goodreads.com/).
 
 To fix that, this project imports all publications from your Skoob account and generates
